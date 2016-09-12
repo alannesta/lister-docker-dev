@@ -3,8 +3,8 @@ services:
   docker-mysql:
     image: mysql:5.6.33
     volumes:
-      - ./dump/lister.sql:/docker-entrypoint-initdb.d
-      - ./volumes/mysql:/var/lib/mysql
+      - ./dump:/docker-entrypoint-initdb.d
+      - ~/Documents/docker-volumes/mysql:/var/lib/mysql
     ports:
         - "6033:3306"
     restart: always
