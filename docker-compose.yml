@@ -14,7 +14,7 @@ services:
   lister-backend:
     depends_on:
       - docker-mysql
-    image: lister-backend:0.1.0
+    image: alannesta/lister-backend:0.3.0
     links:
       - docker-mysql
     ports:
