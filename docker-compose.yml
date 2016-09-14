@@ -14,11 +14,23 @@ services:
   lister-backend:
     depends_on:
       - docker-mysql
+      - docker-elasticsearch
     image: alannesta/lister-backend:0.3.0
     links:
       - docker-mysql
+      - docker-elasticsearch
     ports:
       - "4302:4302"
     restart: always
     environment:
       MYSQL_HOST: docker-mysql
+      ELASTICSEARCH_HOST: docker-elasticsearch
+
+  docker-elasticsearch:
+    image: elasticsearch:2.3
+    volumes:
+      - ~/Documents/docker-volumes/elasticsearch/data:/usr/share/elasticsearch/data
+    restart: always
+    ports:
+      - "9201:9200"
+
