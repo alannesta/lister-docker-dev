@@ -15,15 +15,16 @@ services:
     depends_on:
       - docker-mysql
       - docker-elasticsearch
-    image: alannesta/lister-backend:0.6.0
+    image: alannesta/lister-backend:0.8.0
     links:
       - docker-mysql
       - docker-elasticsearch
     ports:
       - "4302:4302"
-    restart: always
     environment:
+      NODE_ENV: docker
       MYSQL_HOST: docker-mysql
+      MYSQL_PORT: 3306
       ELASTICSEARCH_HOST: docker-elasticsearch
 
   docker-elasticsearch:
