@@ -15,10 +15,7 @@ services:
     depends_on:
       - docker-mysql
       - docker-elasticsearch
-    image: alannesta/lister-backend:0.8.0
-    links:
-      - docker-mysql
-      - docker-elasticsearch
+    image: alannesta/lister-backend:1.0.0
     ports:
       - "4302:4302"
     environment:
@@ -26,6 +23,8 @@ services:
       MYSQL_HOST: docker-mysql
       MYSQL_PORT: 3306
       ELASTICSEARCH_HOST: docker-elasticsearch
+      CRAWLER_URL_POOL: "[\"http://email.91dizhi.at.gmail.com.8h5.space/v.php?category=hot&viewtype=basic&page=1\",\"http://email.91dizhi.at.gmail.com.8h5.space/v.php?category=hot&viewtype=basic&page=2\",\"http://email.91dizhi.at.gmail.com.8h5.space/v.php?category=hot&viewtype=basic&page=3\"]"
+      REDIS_URL: //docker-redis:6379
 
   docker-elasticsearch:
     image: elasticsearch:2.3
@@ -35,3 +34,7 @@ services:
     ports:
       - "9201:9200"
 
+networks:
+  default:
+    external:
+      name: lister_dev
