@@ -35,10 +35,10 @@ services:
       - "9201:9200"
 
   docker-nginx:
-    image: alannesta/lister-nginx:0.1.0
+    image: alannesta/lister-nginx:0.1.2
     ports: 
       - "8080:80"
-    links:
+    depends_on:
       - lister-backend
     restart: unless-stopped
 
